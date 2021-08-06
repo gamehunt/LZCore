@@ -16,35 +16,22 @@ import java.util.HashSet;
 
 @Mod.EventBusSubscriber(modid = Constants.MODID)
 public class BlockRegistry {
-    private static HashSet<AbstractBlock> instances = new HashSet<>();
+    private static HashMap<String, HashSet<AbstractBlock>> instances = new HashMap<>();
 
     public static void addInstance(AbstractBlock b){
-        instances.add(b);
-    }
-
-    public static HashSet<AbstractBlock> getInstances(){
-        return instances;
-    }
-
-    @SubscribeEvent
-    public static void onRegisteringBlocks(RegistryEvent.Register<Block> e){
-        for(Block b : instances) {
-            e.getRegistry().register(b);
+        if(instances.containsKey(b.getRegistryName().getResourceDomain())) {
+            instances.get(b.getRegistryName().getResourceDomain()).add(b);
+        }else{
+            HashSet<AbstractBlock> set = new HashSet<>();
+            set.add(b);
+            instances.put(b.getRegistryName().getResourceDomain(), set);
         }
     }
 
-    @SubscribeEvent
-    public static void onRegisteringItems(RegistryEvent.Register<Item> e){
-        for(Block b : instances) {
-            e.getRegistry().register(new ItemBlock(b).setRegistryName(b.getRegistryName()));
-        }
+    public static HashSet<AbstractBlock> getInstances(String modid){
+        HashSet<AbstractBlock> inst = instances.get(modid);
+        return inst == null ? new HashSet<AbstractBlock>(){} : inst;
     }
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public static void onRegisteringModels(ModelRegistryEvent e){
-        for(AbstractBlock b : instances) {
-            b.registerModel();
-        }
-    }
+
 }

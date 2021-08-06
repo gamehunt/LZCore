@@ -77,9 +77,11 @@ shadowJar {
 
     dependencies {
         include(dependency('org.reflections:reflections:.*'))
+        include(dependency('org.javassist:javassist:.*'))
     }
 
     relocate 'org.reflections', 'gamehunt.libs.org.reflections'
+    relocate 'javassist', 'gamehunt.libs.javassist'
 
     classifier '' // Replace the default JAR
 }

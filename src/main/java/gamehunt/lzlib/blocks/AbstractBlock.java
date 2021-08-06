@@ -11,18 +11,28 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.GameData;
+import org.apache.commons.lang3.reflect.FieldUtils;
+
+import java.lang.reflect.Field;
 
 public class AbstractBlock extends Block {
-    public AbstractBlock(String registryName, Material materialIn) {
+    public AbstractBlock(String registryName, Material materialIn){
         super(materialIn);
         this.setRegistryName(registryName);
+        //Такой костыль нужен для того, чтоб фордж не ругался на нестандартный префикс
+        try {
+            FieldUtils.writeField(this, "registryName", GameData.checkPrefix(registryName, false), true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         this.setUnlocalizedName(registryName);
         BlockRegistry.addInstance(this);
     }
 
-    public AbstractBlock(String registryName, String unlocalizedName, Material materialIn) {
-        this(registryName, materialIn);
-        this.setUnlocalizedName(unlocalizedName);
+    public AbstractBlock(String registryName, String modid, Material materialIn){
+        this(modid+":"+registryName, materialIn);
     }
 
     @SideOnly(Side.CLIENT)
