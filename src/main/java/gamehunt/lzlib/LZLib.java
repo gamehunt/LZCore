@@ -26,8 +26,6 @@ public class LZLib {
     public void preInit(FMLPreInitializationEvent e){
         logger = e.getModLog();
         proxy.preInit(e);
-        ReflectionHelper rh = new ReflectionHelper("gamehunt.lzlib.blocks");
-        rh.constructClasses();
     }
 
     @Mod.EventHandler
