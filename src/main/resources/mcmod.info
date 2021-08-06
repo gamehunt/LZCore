@@ -1,0 +1,16 @@
+[
+{
+  "modid": "lzlib",
+  "name": "LZLib",
+  "description": "Lizord's lib.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["gamehunt aka Lizord"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
