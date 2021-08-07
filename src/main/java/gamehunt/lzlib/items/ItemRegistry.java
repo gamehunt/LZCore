@@ -1,0 +1,55 @@
+package gamehunt.lzlib.items;
+
+import gamehunt.lzlib.LZLib;
+import gamehunt.lzlib.blocks.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistry;
+
+import java.util.HashMap;
+import java.util.HashSet;
+
+@Mod.EventBusSubscriber
+public class ItemRegistry {
+    private static HashMap<String, HashSet<AbstractItem>> instances = new HashMap<>();
+
+    public static void addInstance(AbstractItem b){
+        if(instances.containsKey(b.getRegistryName().getResourceDomain())) {
+            instances.get(b.getRegistryName().getResourceDomain()).add(b);
+        }else{
+            HashSet<AbstractItem> set = new HashSet<>();
+            set.add(b);
+            instances.put(b.getRegistryName().getResourceDomain(), set);
+        }
+    }
+
+    public static HashSet<AbstractItem> getInstances(String modid){
+        HashSet<AbstractItem> inst = instances.get(modid);
+        return inst == null ? new HashSet<AbstractItem>(){} : inst;
+    }
+
+    public static void registerModItems(IForgeRegistry<Item> registry, String modid){
+        for(AbstractItem b : getInstances(modid)) {
+            registry.register(b);
+        }
+    }
+
+    public static void registerModItemModels(String modid){
+        for(AbstractItem b : getInstances(modid)){
+            b.registerModel();
+        }
+    }
+
+
+}

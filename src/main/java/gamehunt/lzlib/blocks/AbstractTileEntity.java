@@ -6,7 +6,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 public class AbstractTileEntity extends TileEntity {
-
+    protected AbstractTileEntity(){}
     //Синхронизация с клиентом
     @Override
     public NBTTagCompound getUpdateTag() {

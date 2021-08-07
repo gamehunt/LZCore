@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 import java.util.HashSet;
 
 public class AbstractBlock extends Block {
-    public AbstractBlock(String registryName, Material materialIn){
+    protected AbstractBlock(String registryName, Material materialIn){
         super(materialIn);
         this.setRegistryName(registryName);
         this.setUnlocalizedName(registryName);
