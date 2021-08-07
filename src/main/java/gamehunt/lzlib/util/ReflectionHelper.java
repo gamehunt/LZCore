@@ -32,7 +32,7 @@ public class ReflectionHelper {
 
     public void constructClasses(){
         Set<Class<?>> toPreconstruct = findAnnotatedClasses(RegistryEntry.class);
-        if(toPreconstruct != null) {
+        if(toPreconstruct != null && toPreconstruct.size() > 0) {
             for (Class<?> clazz : toPreconstruct) {
                 try {
                     LZLib.instance.getLogger().info("Preconstructing class: " + clazz.getSimpleName());

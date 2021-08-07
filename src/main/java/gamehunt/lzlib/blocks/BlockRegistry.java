@@ -2,14 +2,18 @@ package gamehunt.lzlib.blocks;
 
 import gamehunt.lzlib.Constants;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.ForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -33,5 +37,26 @@ public class BlockRegistry {
         return inst == null ? new HashSet<AbstractBlock>(){} : inst;
     }
 
+    public static void registerModBlocks(IForgeRegistry<Block> registry, String modid){
+        for(AbstractBlock b : getInstances(modid)) {
+            registry.register(b);
+            for(IBlockState s : b.getTEStates()) {
+                if (b.hasTileEntity(s)) {
+                    GameRegistry.registerTileEntity(b.getTileEntityClass(s), b.getRegistryName());
+                }
+            }
+        }
+    }
 
+    public static void registerModItemBlocks(IForgeRegistry<Item> registry, String modid){
+        for(AbstractBlock b : getInstances(modid)) {
+            registry.register(new ItemBlock(b).setRegistryName(b.getRegistryName()));
+        }
+    }
+
+    public static void registerModBlockModels(String modid){
+        for(AbstractBlock b : getInstances(modid)){
+            b.registerModel();
+        }
+    }
 }
