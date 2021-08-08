@@ -1,6 +1,5 @@
-package gamehunt.lzlib;
+package ru.j4fn.lizord.lzlib;
 
-import gamehunt.lzlib.util.ReflectionHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -19,7 +18,7 @@ public class LZLib {
     @Mod.Instance(Constants.MODID)
     public static LZLib instance = null;
 
-    @SidedProxy(serverSide = "gamehunt.lzlib.CommonProxy", clientSide = "gamehunt.lzlib.ClientProxy")
+    @SidedProxy(serverSide = "ru.j4fn.lizord.lzlib.CommonProxy", clientSide = "ru.j4fn.lizord.lzlib.ClientProxy")
     public static CommonProxy proxy = null;
 
     @Mod.EventHandler

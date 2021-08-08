@@ -1,8 +1,7 @@
-package gamehunt.lzlib.util;
+package ru.j4fn.lizord.lzlib.util;
 
-import gamehunt.lzlib.LZLib;
+import ru.j4fn.lizord.lzlib.LZLib;
 import org.reflections.Reflections;
-import org.reflections.scanners.MethodAnnotationsScanner;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;
@@ -10,7 +9,6 @@ import org.reflections.util.ConfigurationBuilder;
 
 import java.lang.annotation.Annotation;
 import java.net.URL;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 

@@ -1,4 +1,4 @@
-package gamehunt.lzlib.items;
+package ru.j4fn.lizord.lzlib.items;
 
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

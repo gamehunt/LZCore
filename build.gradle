@@ -20,8 +20,9 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
+
 version = '1.0.0'
-group = 'gamehunt.lzlib' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'ru.j4fn.lizord' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'lzlib'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
@@ -119,7 +120,14 @@ publishing {
     }
     repositories {
         maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
+            url "https://maven.j4fn.ru/releases"
+            credentials {
+                username = mavenLogin
+                password = mavenToken
+            }
+            authentication {
+                basic(BasicAuthentication)
+            }
         }
     }
 }

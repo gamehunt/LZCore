@@ -1,4 +1,4 @@
-package gamehunt.lzlib;
+package ru.j4fn.lizord.lzlib;
 
 public class Constants {
     private Constants(){}

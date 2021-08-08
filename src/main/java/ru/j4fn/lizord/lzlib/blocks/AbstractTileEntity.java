@@ -1,4 +1,4 @@
-package gamehunt.lzlib.blocks;
+package ru.j4fn.lizord.lzlib.blocks;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;

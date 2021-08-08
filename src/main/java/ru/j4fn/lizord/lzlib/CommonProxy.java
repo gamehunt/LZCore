@@ -1,4 +1,4 @@
-package gamehunt.lzlib;
+package ru.j4fn.lizord.lzlib;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

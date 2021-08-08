@@ -1,4 +1,4 @@
-package gamehunt.lzlib.util;
+package ru.j4fn.lizord.lzlib.util;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
