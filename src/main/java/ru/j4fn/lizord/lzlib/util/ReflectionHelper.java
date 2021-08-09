@@ -25,22 +25,21 @@ public class ReflectionHelper {
             addPrefix(p);
         }
         reflectionsInstance = new Reflections(new ConfigurationBuilder().setUrls(reflectionPrefixes).setScanners(new TypeAnnotationsScanner(), new SubTypesScanner()));
-
     }
 
-    public void constructClasses(){
+    public void loadClasses(){
         Set<Class<?>> toPreconstruct = findAnnotatedClasses(RegistryEntry.class);
         if(toPreconstruct != null && toPreconstruct.size() > 0) {
             for (Class<?> clazz : toPreconstruct) {
                 try {
-                    LZLib.instance.getLogger().info("Preconstructing class: " + clazz.getSimpleName());
-                    clazz.newInstance();
+                    LZLib.instance.getLogger().info("Loading class: " + clazz.getSimpleName());
+                    Class.forName(clazz.getName());
                 }catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }else{
-            LZLib.instance.getLogger().info("Nothing to preconstruct...");
+            LZLib.instance.getLogger().info("Nothing to load...");
         }
     }
 

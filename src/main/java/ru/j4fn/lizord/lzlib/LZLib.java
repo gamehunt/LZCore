@@ -29,7 +29,6 @@ public class LZLib {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent e){
-
         proxy.init(e);
     }
 

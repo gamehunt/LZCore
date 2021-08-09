@@ -7,8 +7,6 @@ import java.lang.reflect.Field;
 
 public class AbstractPacket implements IMessage {
 
-
-
     @Override
     public void fromBytes(ByteBuf buf) {
         for(Field f : getClass().getDeclaredFields()){

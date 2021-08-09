@@ -21,7 +21,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 
-version = '1.0.1'
+version = '1.0.2'
 group = 'ru.j4fn.lizord' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'lzlib'
 
@@ -70,7 +70,7 @@ minecraft {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2855'
-    compile "org.reflections:reflections:0.9.12" // Либа существенно облегчает жизнь с рефлексией
+    compile "org.reflections:reflections:0.9.11" // Либа существенно облегчает жизнь с рефлексией
 }
 
 //Пихаем либы в наш жарник
@@ -115,7 +115,8 @@ jar.finalizedBy('reobfJar')
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifact jar
+            from components.java
+            //artifact jar
         }
     }
     repositories {
