@@ -43,7 +43,7 @@ public class ReflectionHelper {
         }
     }
 
-    protected Set<Class<?>> findAnnotatedClasses(Class<? extends Annotation> annotation){
-        return reflectionsInstance.getTypesAnnotatedWith(RegistryEntry.class);
+    public Set<Class<?>> findAnnotatedClasses(Class<? extends Annotation> annotation){
+        return reflectionsInstance.getTypesAnnotatedWith(annotation);
     }
 }

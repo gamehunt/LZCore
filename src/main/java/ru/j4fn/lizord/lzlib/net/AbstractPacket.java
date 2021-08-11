@@ -2,13 +2,14 @@ package ru.j4fn.lizord.lzlib.net;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import ru.j4fn.lizord.lzlib.LZLib;
 
 import java.lang.reflect.Field;
 import java.util.Comparator;
 import java.util.TreeMap;
 
-public class AbstractPacket<T extends AbstractPacket> implements IMessage {
+public abstract class AbstractPacket<T extends AbstractPacket> implements IMessage {
 
     private static class FieldComparator implements Comparator<Field>{
         @Override
@@ -56,4 +57,7 @@ public class AbstractPacket<T extends AbstractPacket> implements IMessage {
             }
         }
     }
+
+    public abstract IMessage handle(MessageContext ctx);
 }
+
