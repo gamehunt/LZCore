@@ -2,6 +2,7 @@ package ru.j4fn.lizord.lzlib.items;
 
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
@@ -22,5 +23,10 @@ public class AbstractItem extends Item {
         final Item item = this;
         ModelBakery.registerItemVariants(item, mrl);
         ModelLoader.setCustomModelResourceLocation(item, 0, mrl);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public TileEntityItemStackRenderer getSpecialRenderer(){
+        return null;
     }
 }

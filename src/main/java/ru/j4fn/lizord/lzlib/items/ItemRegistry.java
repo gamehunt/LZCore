@@ -1,6 +1,8 @@
 package ru.j4fn.lizord.lzlib.items;
 
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -35,6 +37,10 @@ public class ItemRegistry {
     public static void registerModItemModels(String modid){
         for(AbstractItem b : getInstances(modid)){
             b.registerModel();
+            TileEntityItemStackRenderer renderer = b.getSpecialRenderer();
+            if(renderer != null){
+                b.setTileEntityItemStackRenderer(b.getSpecialRenderer());
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 package ru.j4fn.lizord.lzlib.blocks;
 
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import ru.j4fn.lizord.lzlib.Constants;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -51,6 +53,20 @@ public class BlockRegistry {
     public static void registerModBlockModels(String modid){
         for(AbstractBlock b : getInstances(modid)){
             b.registerModel();
+            for(IBlockState s : b.getTEStates()) {
+                if (b.hasTileEntity(s)) {
+                    try {
+                        TileEntitySpecialRenderer<? super AbstractTileEntity> renderer = b.getTileEntityClass(s).newInstance().getSpecialRenderer();
+                        if(renderer != null){
+                            ClientRegistry.bindTileEntitySpecialRenderer(b.getTileEntityClass(s), renderer);
+                        }
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
     }
 }
